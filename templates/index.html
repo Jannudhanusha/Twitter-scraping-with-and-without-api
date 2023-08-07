@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter Scraper</title>
+</head>
+<body>
+    <h1>Twitter Scraper</h1>
+    <form method="POST">
+        <label for="word">Search Word:</label>
+        <input type="text" id="word" name="word"><br><br>
+        <label for="begin_date">Begin Date:</label>
+        <input type="text" id="begin_date" name="begin_date" placeholder="YYYY-MM-DD"><br><br>
+        <label for="end_date">End Date:</label>
+        <input type="text" id="end_date" name="end_date" placeholder="YYYY-MM-DD"><br><br>
+        <label for="limit">Result Limit:</label>
+        <input type="number" id="limit" name="limit" min="1" max="100"><br><br>
+        <input type="submit" value="Search">
+    </form>
+    {% if tweets %}
+    <h2>Results:</h2>
+    {{ tweets|safe }}
+    <br>
+    <a href="/download_csv?word={{ request.form['word'] }}&begin_date={{ request.form['begin_date'] }}&end_date={{ request.form['end_date'] }}&limit={{ request.form['limit'] }}" download><button>Download CSV</button></a>
+    {% endif %}
+</body>
+</html>
